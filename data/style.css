@@ -1,12 +1,11 @@
-body{
-    background: linear-gradient(90deg, #ffd1d4, #ff9b9f, #480bf7);
-    margin: 0;
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Overpass:ital,wght@0,100..900;1,100..900&display=swap');
 
-a{
-    text-decoration: none; 
-    font-size: 20px;
+body, html{
+    background: #eeeeee;
+    margin: 0;
+    padding: 0;
 }
+a{text-decoration: none; font-size: 20px;}
 a:hover{text-decoration: line-through;}
 
 .flex-main-container{
@@ -21,66 +20,104 @@ a:hover{text-decoration: line-through;}
     background: white;
     justify-content: center;
     align-items: center;
-    width: 60%;
-    height: 135px;
-    border-radius: 0px 0px 20px 20px;
+    margin-top: -25px;
+    margin-bottom: 30px;
+    width: 100%;
+    height: 150px;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
     font-size: 80px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    box-shadow: 0px 2px 10px 0.5px black;
 }
 div.title::before{content: "7 ЧУДЕС УКРАЇНИ"}
 
 .title-content{
+    transition: all .3s ease;
     margin: 20px auto;
+    color: white;
     display: flex;
     text-align: center;
+    font-size: 72px;
+    z-index: 2;
     order: 1;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: all .3s ease;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1;
 }
 
 .container-content{
     display: flex;
+    position: relative;
+    overflow: hidden;
+    background-size: contain;
     flex-direction: column;
     margin-top: 50px;
-    background: white;
+    color: white;
     width: 60%;
     height: 100%;
     border-radius: 20px;
-    font-size: xx-large;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    box-shadow: 0px 2px 10px 0.5px black;
 }
 
 .flex-content{
     display: flex;
+    padding: 0px 40px;
     order: 2;
+    z-index: 2;
     height: 100%;
 }
 
 .flex-column{
     display: flex;
+    justify-content: center;
     width: 100%;
-    flex-direction: column;
-    order: 2;
-    margin-left: 10px;
+    padding-bottom: 40px;
+    /* order: 2; */
+    /* margin-left: 10px; */
 }
-
+    
 .img{
-    order: 1;
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    width: 100%;
     height: 100%;
-    width: 50%;
-    margin: 0 10px;
-    transition: all .3s ease;
-    border-radius: 10px;
+    object-fit: cover;
     transition: all .3s ease;
 }
 
-img{
-    width: 100%;
-    border-radius: 10px;
+.container-content:hover .img{
+    transform: scale(1.1);
+}
+
+.container-content:hover .text-content{
+    opacity: 1;
+}
+
+.container-content:hover .img{
+    filter: blur(4px);
+}
+
+.container-content:hover .overlay{
+    background-color: rgba(0, 0, 0, 0.65);
+}
+
+.container-content:hover .title-content{
+    font-size: 40px;
 }
 
 .link{
-    display: flex;
+    opacity: 0;
+    display: none;
+    /* display: flex; */
     justify-content: flex-end;
     align-items: flex-end;
     margin-right: 20px;
@@ -90,30 +127,44 @@ img{
 
 .text-content{
     display: flex;
+    text-align: center;
     width: 75%;
-    height: 100%;
     font-size: 25px;
+    font-family: "Inter", sans-serif;
+    opacity: 0;
+    transition: all .3s ease;
 }
 
 .end{
-    height: 70px;
-    font-size: 20px;
-    margin-bottom: -10px;
     display: flex;
-    flex-direction: row;
+    margin-top: 80px;
+    background: white;
     justify-content: center;
     align-items: center;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+    width: 100%;
+    font-size: 80px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    height: 70px;
+    font-size: 20px;
+    flex-direction: row;
+    justify-content: center;
+    z-index: 4;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+}
+
+.end > img{
+    width: 40px;
 }
 
 .author{
+    margin-left: 10px;
     order: 2;
 }
 
 .copyright{
     width: 6%;
-    margin: 0 10px;
+    margin-left: 30px;
     order: 1;
 }
 .copyright:hover{
@@ -123,12 +174,12 @@ img{
 .date{
     align-content: end;
     margin-left: auto;
-    margin-right: 20px;
+    margin-right: 30px;
     order: 3;
 }
 
 .author::before{
-    content: "Fullstack Developer YAROSLAV VOLKIVSKYI";
+    content: "TheLaidSon (Yaroslav Volkivskyi)";
 }
 .date::before{
     content: attr(year);
@@ -136,20 +187,34 @@ img{
 
 #overlay{
     position: fixed;
+    z-index: 5;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.9);
     visibility: hidden;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-evenly;
     align-items: center;
     transition: all .3s ease;
     opacity: 0;
 }
+
+.overlay-title{
+    font-weight: 200;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 40px;
+    color: white;
+}
+
+.overlay-image-container{
+    height: 70%;
+    max-width: 90%;
+}
   
-#modal{
+/* #modal{
     transition: all .3s ease;
     display: flex;
     align-items: center;
@@ -159,17 +224,44 @@ img{
     padding: 20px;
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
+} */
 
 #modal-img{
     transition: all .3s ease;
+    border-radius: 10px;
+    /* transform-origin: center center; */
     width: 100%;
-    cursor: zoom-in;
+    /* cursor: zoom-in; */
 }
 
-#modal h2{
+.overlay-title{
     text-align: center;
+    font-weight: 300;
     margin-top: 0;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    
+}
+
+@media screen and (max-width: 645px) {
+    .title{
+        font-size: 45px;
+    }
+
+    .title-content{
+        font-size: 40px;
+    }
+
+    .container-content{
+        height: 100% !important;
+        width: 70%;
+    }
+
+    .overlay{
+        background-color: rgba(0, 0, 0, 0.65);
+    }
+
+    .text-content{
+        font-size: 20px;
+        opacity: 1;
+        width: 90%;
+    }
 }

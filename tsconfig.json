@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+      "module": "esnext",
+      "target": "es6",
+      "strict": true,
+      "esModuleInterop": true,
+      "moduleResolution": "node",
+      "rootDir": "data/core",
+      "outDir": "data",
+      "resolveJsonModule": true,
+      "typeRoots": [
+            "./node_modules/@types"
+        ]
+    },
+    "include": [
+      "data/core/**/*"
+    ],
+    "exclude": [
+      "node_modules"
+    ]
+  }
+  
